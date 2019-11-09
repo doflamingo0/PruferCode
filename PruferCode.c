@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <conio.h>
+#include <stdlib.h>
 
 int main()
 {
@@ -10,9 +11,13 @@ int main()
 	// tinh chat cua cay: |V| = |E| + 1
 	V = E+1;
 	
-	int A[V][V];
+	int **A;
 	int i, j;
 	
+	A = (int **) malloc(V*sizeof(int *));
+	for(i = 0; i < V; i++)
+		A[i] = (int *) malloc(V*sizeof(int));
+		
 	// Khoi tao tat ca cac phan tu cua mang A = 0
 	for(i = 0; i < V; i++)
 		for(j = 0; j < V; j++)
@@ -67,6 +72,10 @@ int main()
 			break; 
 		} 
 	}
+	
+	for(i = 0; i < V; i++)
+		free(A[i]);
+	free(A);
 	
 	getch();
  	return 0;
